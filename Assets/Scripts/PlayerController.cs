@@ -8,21 +8,38 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Joystick joystick;
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float targetHeight = 0.3f;
+    [SerializeField] private LevelManager levelManager;
 
     [Header("Materials:")]
     [SerializeField] private Material Red;
     [SerializeField] private Material Green;
-    
+
+    [HideInInspector] private bool isRed;
+    [HideInInspector] private bool isGreen;
+
     private CharacterController controller;
 
     void Start()
     {
         joystick = GameObject.FindWithTag("Joystick").GetComponent<Joystick>();
+        levelManager = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>();
         controller = GetComponent<CharacterController>();
     }
 
     void Update()
     {
+        isRed = levelManager.isRed;
+        isGreen = levelManager.isGreen;
+        
+        if (isRed && isGreen == false)
+        {
+            GetComponent<Renderer>().material = Red;
+        }
+        else if(isRed == false && isGreen)
+        {
+            GetComponent<Renderer>().material = Green;
+        }
+        
         Vector3 moveDirection = new Vector3(-joystick.Horizontal, 0, -joystick.Vertical);
         moveDirection *= speed;
 
@@ -42,4 +59,6 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(moveDirection * Time.deltaTime);
     }
+    
+    
 }

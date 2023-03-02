@@ -129,8 +129,9 @@ MonoBehaviour:
   joystick: {fileID: 0}
   speed: 5
   targetHeight: 0.1
-  Red: {fileID: 0}
-  Green: {fileID: 0}
+  levelManager: {fileID: 0}
+  Red: {fileID: 2100000, guid: c59dfe2b70c790225866ffbeda579f72, type: 2}
+  Green: {fileID: 2100000, guid: 5ba36e4d13821031b87ebb685b866d6d, type: 2}
 --- !u!1 &7793111465804636892
 GameObject:
   m_ObjectHideFlags: 0
